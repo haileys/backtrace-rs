@@ -187,7 +187,7 @@ mod lock {
     }
 }
 
-#[cfg(all(windows, not(target_vendor = "uwp")))]
+#[cfg(all(windows, not(target_vendor = "uwp"), not(target_os = "win9x")))]
 mod dbghelp;
-#[cfg(windows)]
+#[cfg(all(windows, not(target_os = "win9x")))]
 mod windows;

@@ -148,7 +148,7 @@ cfg_if::cfg_if! {
         mod libunwind;
         use self::libunwind::trace as trace_imp;
         pub(crate) use self::libunwind::Frame as FrameImp;
-    } else if #[cfg(all(windows, not(target_vendor = "uwp")))] {
+    } else if #[cfg(all(windows, not(target_vendor = "uwp"), not(target_os = "win9x")))] {
         mod dbghelp;
         use self::dbghelp::trace as trace_imp;
         pub(crate) use self::dbghelp::Frame as FrameImp;

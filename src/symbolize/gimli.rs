@@ -27,7 +27,10 @@ mod mystd {
 extern crate std as mystd;
 
 cfg_if::cfg_if! {
-    if #[cfg(windows)] {
+    if #[cfg(target_os = "win9x")] {
+        #[path = "gimli/mmap_win9x.rs"]
+        mod mmap;
+    } else if #[cfg(windows)] {
         #[path = "gimli/mmap_windows.rs"]
         mod mmap;
     } else if #[cfg(any(
